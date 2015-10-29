@@ -23,9 +23,13 @@ void loop(){
     Serial.println(temperature);
     
     if(temperature < baselineTemp) {
-        digitalWrite(2, LOW);
-        digitalWrite(3, LOW);
-        digitalWrite(4, LOW);
+        for(int pinNumber = 2; pinNumber < 5; pinNumber++) {
+            digitalWrite(pinNumber,LOW);
+        }
+        delay(100);
+        for(int pinNumber = 2; pinNumber < 5; pinNumber++) {
+            digitalWrite(pinNumber,HIGH);
+        }
     } else if(temperature >= baselineTemp+2 && temperature < baselineTemp+4) {
         digitalWrite(2, HIGH);
         digitalWrite(3, LOW);
@@ -35,9 +39,9 @@ void loop(){
         digitalWrite(3, HIGH);
         digitalWrite(4, LOW);
     } else if(temperature >= baselineTemp+6) {
-        digitalWrite(2, HIGH);
-        digitalWrite(3, HIGH);
-        digitalWrite(4, HIGH);
+        for(int pinNumber = 2; pinNumber < 5; pinNumber++) {
+            digitalWrite(pinNumber,HIGH);
+        }
     }
     delay(1);
 }
